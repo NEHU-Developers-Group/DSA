@@ -62,13 +62,20 @@ struct Node * DeletewithValue(struct Node * head, int value) // Time complexity 
 {
     struct Node * p = head;
     struct Node * q = head->next;
-    while (q->data != value)
+    while (q->data != value && q->next != NULL)
     {
         p = p->next;
         q = q->next;
     }
-    p->next = q->next;
-    free(q);
+    if(q->data == value){
+        p->next = q->next;
+        free(q);
+    }
+    else
+    {
+        printf("Value Not found!\n");
+    }
+    
     return head;
     
 }
@@ -103,7 +110,7 @@ int main() {
     // head = DeleteFirstElement(head);
     // head = DeleteAtIndex(head,2);
     // head = DeleteAtLast(head);
-    head =  DeletewithValue(head,16);
+    head =  DeletewithValue(head,15);
     printf("Linked list after deletion\n");
     Linkedlisttraversal(head);
 
