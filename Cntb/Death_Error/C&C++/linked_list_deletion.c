@@ -43,6 +43,35 @@ struct Node * DeleteAtIndex(struct Node * head, int index) // Time complexity O(
     free(q);
     return head;
 }
+// Delete the last node
+struct Node * DeleteAtLast(struct Node * head) // Time complexity O(n)
+{
+    struct Node * p = head;
+    struct Node * q = head->next;
+    while (q->next != NULL)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = q->next;
+    free(q);
+    return head;
+}
+// Delete a node with a given value
+struct Node * DeletewithValue(struct Node * head, int value) // Time complexity O(n)
+{
+    struct Node * p = head;
+    struct Node * q = head->next;
+    while (q->data != value)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = q->next;
+    free(q);
+    return head;
+    
+}
 
 int main() {
     
@@ -72,7 +101,9 @@ int main() {
     Linkedlisttraversal(head);
 
     // head = DeleteFirstElement(head);
-    head = DeleteAtIndex(head,2);
+    // head = DeleteAtIndex(head,2);
+    // head = DeleteAtLast(head);
+    head =  DeletewithValue(head,16);
     printf("Linked list after deletion\n");
     Linkedlisttraversal(head);
 
